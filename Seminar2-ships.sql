@@ -1,14 +1,14 @@
 use ships
 
--- Напишете заявка, която извежда името на корабите, по-тежки
--- (displacement) от 35000
+-- РќР°РїРёС€РµС‚Рµ Р·Р°СЏРІРєР°, РєРѕСЏС‚Рѕ РёР·РІРµР¶РґР° РёРјРµС‚Рѕ РЅР° РєРѕСЂР°Р±РёС‚Рµ, РїРѕ-С‚РµР¶РєРё
+-- (displacement) РѕС‚ 35000
 select distinct s.name
 from ships s
 	join classes c on s.CLASS = c.CLASS
 where c.DISPLACEMENT > 35000
 
--- Напишете заявка, която извежда имената, водоизместимостта
--- и броя оръдия на всички кораби, участвали в битката при 
+-- РќР°РїРёС€РµС‚Рµ Р·Р°СЏРІРєР°, РєРѕСЏС‚Рѕ РёР·РІРµР¶РґР° РёРјРµРЅР°С‚Р°, РІРѕРґРѕРёР·РјРµСЃС‚РёРјРѕСЃС‚С‚Р°
+-- Рё Р±СЂРѕСЏ РѕСЂСЉРґРёСЏ РЅР° РІСЃРёС‡РєРё РєРѕСЂР°Р±Рё, СѓС‡Р°СЃС‚РІР°Р»Рё РІ Р±РёС‚РєР°С‚Р° РїСЂРё 
 -- 'Guadalcanal'
 select distinct s.NAME, c.BORE, c.NUMGUNS
 from outcomes o
@@ -16,11 +16,19 @@ from outcomes o
 	 join CLASSES c on s.CLASS = c.CLASS
 where o.BATTLE = 'Guadalcanal'
 
--- Напишете заявка, която извежда имената на тези държави, които 
--- имат класове кораби от тип ‘bb’ и ‘bc’ едновременно
+-- РќР°РїРёС€РµС‚Рµ Р·Р°СЏРІРєР°, РєРѕСЏС‚Рѕ РёР·РІРµР¶РґР° РёРјРµРЅР°С‚Р° РЅР° С‚РµР·Рё РґСЉСЂР¶Р°РІРё, РєРѕРёС‚Рѕ
+-- РёРјР°С‚ РєР»Р°СЃРѕРІРµ РєРѕСЂР°Р±Рё РѕС‚ С‚РёРї вЂbbвЂ™ Рё вЂbcвЂ™ РµРґРЅРѕРІСЂРµРјРµРЅРЅРѕ
 select distinct c1.COUNTRY
 from CLASSES c1
 	join CLASSES c2 on c1.COUNTRY = c2.COUNTRY
 where c1.TYPE = 'bb' and c2.TYPE = 'bc'
 
--- Напишете заявка, която извежда имената на тези кораби, които -- са били повредени в една битка, но по-късно са участвали в -- друга битка.select distinct o1.SHIPfrom OUTCOMES o1	join OUTCOMES o2 on o1.SHIP = o2.SHIP	join BATTLES b1 on o1.BATTLE = b1.NAME	join BATTLES b2 on o2.BATTLE = b2.NAMEwhere o1.RESULT = 'damaged' and b1.DATE < b2.DATE
+-- РќР°РїРёС€РµС‚Рµ Р·Р°СЏРІРєР°, РєРѕСЏС‚Рѕ РёР·РІРµР¶РґР° РёРјРµРЅР°С‚Р° РЅР° С‚РµР·Рё РєРѕСЂР°Р±Рё, РєРѕРёС‚Рѕ
+-- СЃР° Р±РёР»Рё РїРѕРІСЂРµРґРµРЅРё РІ РµРґРЅР° Р±РёС‚РєР°, РЅРѕ РїРѕ-РєСЉСЃРЅРѕ СЃР° СѓС‡Р°СЃС‚РІР°Р»Рё РІ 
+-- РґСЂСѓРіР° Р±РёС‚РєР°.
+select distinct o1.SHIP
+from OUTCOMES o1
+	join OUTCOMES o2 on o1.SHIP = o2.SHIP
+	join BATTLES b1 on o1.BATTLE = b1.NAME
+	join BATTLES b2 on o2.BATTLE = b2.NAME
+where o1.RESULT = 'damaged' and b1.DATE < b2.DATE
