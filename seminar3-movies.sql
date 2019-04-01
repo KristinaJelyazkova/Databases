@@ -16,8 +16,8 @@ where length > (select length
 				where title = 'Gone With the Wind'
 					and year = 1938)
 
--- Èìåíàòà íà ïðîäóöåíòèòå è ïðîäóêöèèòå, ïðàâåíè îò ïðîäóöåíòè 
--- ñ NETWORTH ïî-ãîëÿì îò NETWORTH-a íà 'Merv Griffin'
+-- Ð˜Ð¼ÐµÐ½Ð°Ñ‚Ð° Ð½Ð° Ð¿Ñ€Ð¾Ð´ÑƒÑ†ÐµÐ½Ñ‚Ð¸Ñ‚Ðµ Ð¸ Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ†Ð¸Ð¸Ñ‚Ðµ, Ð¿Ñ€Ð°Ð²ÐµÐ½Ð¸ Ð¾Ñ‚ Ð¿Ñ€Ð¾Ð´ÑƒÑ†ÐµÐ½Ñ‚Ð¸ 
+-- Ñ NETWORTH Ð¿Ð¾-Ð³Ð¾Ð»ÑÐ¼ Ð¾Ñ‚ NETWORTH-a Ð½Ð° 'Merv Griffin'
 select m.NAME, n.TITLE
 from MOVIEEXEC m join MOVIE n on m.NAME = n.PRODUCERC#
 where m.NETWORTH > (select NETWORTH
