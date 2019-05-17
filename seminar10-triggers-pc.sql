@@ -12,7 +12,8 @@ after update
 as
 if exists(select *
 		from inserted i join pc p on i.speed = p.speed
-		where p.price < i.price)
+	  			join deleted d on i.code = d.code
+		where p.price < i.price and i.price != d.price)
 begin
 	rollback
 end
